@@ -10,6 +10,7 @@
 const clickerButton = document.querySelector('#click');
 const moneyTracker = document.querySelector('#money');
 const mpsTracker = document.querySelector('#mps');
+const followerTracker = document.querySelector('#followers');
 const upgradeList = document.querySelector('#upgradelist')
 const msgbox = document.querySelector('#msgbox')
 
@@ -53,6 +54,7 @@ clickerButton.addEventListener('click', () => {
 function step(timestamp) {
   moneyTracker.textContent = Math.round(money);
   mpsTracker.textContent = moneyPerSecond;
+  followerTracker.textContent = moneyPerClick;
 
   if (timestamp >= last + 1000) {
     money += moneyPerSecond;
@@ -130,15 +132,16 @@ function createCard(upgrade) {
   header.classList.add('title');
   const cost = document.createElement('p');
 
-  header.textContent = upgrade.name + ', +' + upgrade.amount + 'kr per sekund.';
-  cost.textContent = 'Köp för ' + upgrade.cost + 'kr';
+  header.textContent = upgrade.name + ', +' + upgrade.amount + ' likes per sekund.';
+  cost.textContent = 'Köp för ' + upgrade.cost + ' likes';
 
   card.addEventListener('click', (e) => {
     if (money >= upgrade.cost) {
+      followers++;
       moneyPerClick++;
       money -= upgrade.cost;
       upgrade.cost *= 1.5;
-      cost.textContent = 'Köp för ' + upgrade.cost + 'kr';
+      cost.textContent = 'Köp för ' + upgrade.cost + ' likes';
       moneyPerSecond += upgrade.amount;
       message('Grattis du har en ny följare!', 'success');
     } else {
