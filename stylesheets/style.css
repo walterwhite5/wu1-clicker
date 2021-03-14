@@ -1,0 +1,114 @@
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  padding-top: 2rem;
+}
+
+#click {
+  width: 8rem;
+  height: 8rem;
+  font-size: 2rem;
+}
+
+#msgbox {
+  width: 100%;
+
+}
+
+#msgbox > p {
+  margin-bottom: .1rem;
+  padding: .5rem;
+}
+
+.warning {
+  background-color: palevioletred;
+}
+
+.success {
+  background-color:mediumspringgreen;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border: 1px solid black;
+  margin: .5rem 0;
+  padding: .5rem;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 8rem;
+}
+
+.card:hover {
+  background-color:seashell;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (max-width: 540px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+}
+
+img {
+  max-width: 100%;
+} 

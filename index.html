@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Något är fel på internet</title>
+</head>
+<body class="d-flex h-100">
+  <main class="container">
+    <div class="row justify-center">
+      <img src="https://imgs.xkcd.com/comics/duty_calls.png " alt="Källa: https://xkcd.com/386/">
+    </div>
+    <div class="row">
+      <p>Något är fel på nätet, det är dags att ta saken i egna händer och göra någonting åt detta.</p>
+      <p>Räddningen finns såklart genom sociala medier!</p>
+    </div>
+    <div class='row'>
+      <div class="column justify-center align-center">
+        <div class="w-100">
+          <h1>Din förmögenhet: <span id="money"></span>kr</h1>
+        </div>
+        <div class="w-100">
+          <h1>Pengar per sekund: <span id="mps"></span>kr</h1>
+        </div>
+        <div class="w-100">
+          <h1>Följare</h1>
+          <div id="upgradelist"></div>
+        </div>
+      </div>
+      <div class="column justify-center align-center">
+        <div>
+          <button id="click">Tjäna</button>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div id="msgbox"></div>
+    </div>
+  </main>
+  <script src="javascripts/clicker.js"></script>
+</body>
+</html>
