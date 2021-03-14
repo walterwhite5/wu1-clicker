@@ -7,10 +7,12 @@
   <link rel="stylesheet" href="stylesheets/style.css">
   <title>Något är fel på internet</title>
 </head>
-<body class="d-flex h-100">
+<body class="d-flex h-100 flex-column">
   <main class="container">
     <div class="row justify-center">
-      <img src="https://imgs.xkcd.com/comics/duty_calls.png " alt="Källa: https://xkcd.com/386/">
+      <a href="https://xkcd.com/">
+        <img src="https://imgs.xkcd.com/comics/duty_calls.png " alt="Källa: https://xkcd.com/386/">
+      </a>
     </div>
     <div class="row">
       <p>Något är fel på nätet, det är dags att ta saken i egna händer och göra någonting åt detta.</p>
@@ -39,6 +41,12 @@
       <div id="msgbox"></div>
     </div>
   </main>
+  <footer>
+    <div class="container d-flex justify-between">
+      <p>Bild från <a href="https://xkcd.com">XKCD</a>.</p>
+      <p>Kod från <a href="https://github.com/jensnti">Jens</a>.</p>  
+    </div>
+  </footer>
   <script src="javascripts/clicker.js"></script>
 </body>
 </html>
