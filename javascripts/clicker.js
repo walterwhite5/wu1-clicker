@@ -51,7 +51,7 @@ clickerButton.addEventListener('click', () => {
  * Sist i funktionen så kallar den på sig själv igen för att fortsätta uppdatera.
  */
 function step(timestamp) {
-  moneyTracker.textContent = money;
+  moneyTracker.textContent = Math.round(money);
   mpsTracker.textContent = moneyPerSecond;
 
   if (timestamp >= last + 1000) {
