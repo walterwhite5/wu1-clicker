@@ -24,7 +24,7 @@ Spara ditt skiss-material i en mapp i detta repo (dokumentation).
 Länka till Figma om du använt det.
 Skriv kort ned vad du arbetar med i anteckningar.md
 
-Vi kommer att skriva post mortem när vi är klara.
+Vi kommer att skriva post mortem när vi är klara, pm.md.
 
 ## Tid
 
