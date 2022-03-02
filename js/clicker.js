@@ -70,6 +70,7 @@ function step(timestamp) {
     // exempel på hur vi kan använda värden för att skapa tex 
     // achievements. Titta dock på upgrades arrayen och gör något rimligare om du
     // vill ha achievements.
+    // på samma sätt kan du även dölja uppgraderingar som inte kan köpas
     if (moneyPerClick == 10 && !achievementTest) {
         achievementTest = true;
         message('Du har hittat en FOSSIL!', 'achievement');
