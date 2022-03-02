@@ -28,7 +28,6 @@ Vi kommer att skriva post mortem när vi är klara.
 
 ## Tid
 
-Vi har tre veckor nu mellan sportlovet(10) och påsklovet(14). Dock bara två pass.
-Redovisning + post mortem blir måndag vecka 16ish.
+Vi har några veckor nu mellan sportlovet(10) och påsklovet(16).
 
 Tack [Malte](https://github.com/Mafrans) för lite ideér.

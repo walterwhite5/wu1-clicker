@@ -1,18 +1,18 @@
 /* Med document.queryselector(selector) kan vi hämta
-* de element som vi behöver från html dokumentet.
-* Vi spearar elementen i const variabler då vi inte kommer att
-* ändra dess värden.
-* Läs mer: 
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
-* https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
-* Viktigt: queryselector ger oss ett html element eller flera om det finns.
-*/
+ * de element som vi behöver från html dokumentet.
+ * Vi spearar elementen i const variabler då vi inte kommer att
+ * ändra dess värden.
+ * Läs mer:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+ * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+ * Viktigt: queryselector ger oss ett html element eller flera om det finns.
+ */
 const clickerButton = document.querySelector('#click');
 const moneyTracker = document.querySelector('#money');
-const mpsTracker = document.querySelector('#mps');
-const followerTracker = document.querySelector('#followers');
-const upgradeList = document.querySelector('#upgradelist')
-const msgbox = document.querySelector('#msgbox')
+const mpsTracker = document.querySelector('#mps'); // money per second
+const mpcTracker = document.querySelector('#mpc'); // money per click
+const upgradeList = document.querySelector('#upgradelist');
+const msgbox = document.querySelector('#msgbox');
 
 /* Följande variabler använder vi för att hålla reda på hur mycket pengar som
  * spelaren, har och tjänar.
@@ -26,46 +26,61 @@ let moneyPerClick = 1;
 let moneyPerSecond = 0;
 let last = 0;
 
+let achievementTest = false;
+
 /* Med ett valt element, som knappen i detta fall så kan vi skapa listeners
  * med addEventListener så kan vi lyssna på ett specifikt event på ett html-element
  * som ett klick.
  * Detta kommer att driva klickerknappen i spelet.
  * Efter 'click' som är händelsen vi lyssnar på så anges en callback som kommer
  * att köras vi varje klick. I det här fallet så använder vi en anonym funktion.
- * Koden som körs innuti funktionen är att vi lägger till moneyPerClick till 
+ * Koden som körs innuti funktionen är att vi lägger till moneyPerClick till
  * money.
  * Läs mer: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
  */
-clickerButton.addEventListener('click', () => {
-  // vid click öka score med 1
-  money += moneyPerClick;
-  // console.log(clicker.score);
-}, false);
+clickerButton.addEventListener(
+    'click',
+    () => {
+        // vid click öka score med 1
+        money += moneyPerClick;
+        // console.log(clicker.score);
+    },
+    false
+);
 
 /* För att driva klicker spelet så kommer vi att använda oss av en metod som heter
  * requestAnimationFrame.
  * requestAnimationFrame försöker uppdatera efter den refresh rate som användarens
  * maskin har, vanligtvis 60 gånger i sekunden.
  * Läs mer: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
- * funktionen step används som en callback i requestanaimationframe och det är 
+ * funktionen step används som en callback i requestanaimationframe och det är
  * denna metod som uppdaterar webbsidans text och pengarna.
  * Sist i funktionen så kallar den på sig själv igen för att fortsätta uppdatera.
  */
 function step(timestamp) {
-  moneyTracker.textContent = Math.round(money);
-  mpsTracker.textContent = moneyPerSecond;
-  followerTracker.textContent = moneyPerClick;
+    moneyTracker.textContent = Math.round(money);
+    mpsTracker.textContent = moneyPerSecond;
+    mpcTracker.textContent = moneyPerClick;
 
-  if (timestamp >= last + 1000) {
-    money += moneyPerSecond;
-    last = timestamp;
-  }
-  window.requestAnimationFrame(step);
+    if (timestamp >= last + 1000) {
+        money += moneyPerSecond;
+        last = timestamp;
+    }
+
+    // exempel på hur vi kan använda värden för att skapa tex 
+    // achievements. Titta dock på upgrades arrayen och gör något rimligare om du
+    // vill ha achievements.
+    if (moneyPerClick == 10 && !achievementTest) {
+        achievementTest = true;
+        message('Du har hittat en FOSSIL!', 'achievement');
+    }
+
+    window.requestAnimationFrame(step);
 }
 
 /* Här använder vi en listener igen. Den här gången så lyssnar iv efter window
  * objeket och när det har laddat färdigt webbsidan(omvandlat html till dom)
- * När detta har skett så skapar vi listan med upgrades, för detta använder vi 
+ * När detta har skett så skapar vi listan med upgrades, för detta använder vi
  * en forEach loop. För varje element i arrayen upgrades så körs metoden upgradeList
  * för att skapa korten. upgradeList returnerar ett kort som vi fäster på webbsidan
  * med appendChild.
@@ -75,37 +90,37 @@ function step(timestamp) {
  * Efter det så kallas requestAnimationFrame och spelet är igång.
  */
 window.addEventListener('load', (event) => {
-  console.log('page is fully loaded');
-  upgrades.forEach(upgrade => {
-    upgradeList.appendChild(createCard(upgrade));
-  });
-  window.requestAnimationFrame(step);
+    console.log('page is fully loaded');
+    upgrades.forEach((upgrade) => {
+        upgradeList.appendChild(createCard(upgrade));
+    });
+    window.requestAnimationFrame(step);
 });
 
 /* En array med upgrades. Varje upgrade är ett objekt med egenskaperna name, cost
- * och amount. Önskar du ytterligare text eller en bild så går det utmärkt att 
+ * och amount. Önskar du ytterligare text eller en bild så går det utmärkt att
  * lägga till detta.
  * Läs mer:
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
  */
 upgrades = [
-  {
-    name: 'Arg gubbe',
-    cost: 10,
-    amount: 1
-  },
-  {
-    name: 'Internettroll',
-    cost: 100,
-    amount: 10
-  },
-  {
-    name: 'Twitterbot',
-    cost: 1000,
-    amount: 100
-  }
-]
+    {
+        name: 'Fin sop',
+        cost: 10,
+        amount: 1,
+    },
+    {
+        name: 'Spade',
+        cost: 100,
+        amount: 10,
+    },
+    {
+        name: 'Hjälpreda',
+        cost: 1000,
+        amount: 100,
+    },
+];
 
 /* createCard är en funktion som tar ett upgrade objekt som parameter och skapar
  * ett html kort för det.
@@ -126,47 +141,46 @@ upgrades = [
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
  */
 function createCard(upgrade) {
-  const card = document.createElement('div');
-  card.classList.add('card');
-  const header = document.createElement('p');
-  header.classList.add('title');
-  const cost = document.createElement('p');
+    const card = document.createElement('div');
+    card.classList.add('card');
+    const header = document.createElement('p');
+    header.classList.add('title');
+    const cost = document.createElement('p');
 
-  header.textContent = upgrade.name + ', +' + upgrade.amount + ' likes per sekund.';
-  cost.textContent = 'Köp för ' + upgrade.cost + ' likes';
+    header.textContent = `${upgrade.name}, +${upgrade.amount} per sekund.`;
+    cost.textContent = `Köp för ${upgrade.cost} benbitar.`;
 
-  card.addEventListener('click', (e) => {
-    if (money >= upgrade.cost) {
-      followers++;
-      moneyPerClick++;
-      money -= upgrade.cost;
-      upgrade.cost *= 1.5;
-      cost.textContent = 'Köp för ' + upgrade.cost + ' likes';
-      moneyPerSecond += upgrade.amount;
-      message('Grattis du har en ny följare!', 'success');
-    } else {
-      message('Du har inte råd.', 'warning');
-    }
-  });
+    card.addEventListener('click', (e) => {
+        if (money >= upgrade.cost) {
+            moneyPerClick++;
+            money -= upgrade.cost;
+            upgrade.cost *= 1.5;
+            cost.textContent = 'Köp för ' + upgrade.cost + ' likes';
+            moneyPerSecond += upgrade.amount;
+            message('Grattis du har lockat till dig fler besökare!', 'success');
+        } else {
+            message('Du har inte råd.', 'warning');
+        }
+    });
 
-  card.appendChild(header);
-  card.appendChild(cost);
-  return card;
+    card.appendChild(header);
+    card.appendChild(cost);
+    return card;
 }
 
 /* Message visar hur vi kan skapa ett html element och ta bort det.
  * appendChild används för att lägga till och removeChild för att ta bort.
  * Detta görs med en timer.
- * Läs mer: 
+ * Läs mer:
  * https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
  * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
  */
 function message(text, type) {
-  const p = document.createElement('p');
-  p.classList.add(type);
-  p.textContent = text;
-  msgbox.appendChild(p);
-  setTimeout(() => {
-    p.parentNode.removeChild(p);
-  }, 2000);
+    const p = document.createElement('p');
+    p.classList.add(type);
+    p.textContent = text;
+    msgbox.appendChild(p);
+    setTimeout(() => {
+        p.parentNode.removeChild(p);
+    }, 2000);
 }

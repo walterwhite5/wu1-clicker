@@ -1,55 +1,57 @@
 <!DOCTYPE html>
-<html lang="sv" class="h-100">
+<html lang="sv">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <title>Något är fel på internet</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Clicker exempel</title>
 </head>
-<body class="d-flex h-100 flex-column">
-  <main class="container">
-    <div class="row justify-center">
-      <a href="https://xkcd.com/386">
-        <img src="https://imgs.xkcd.com/comics/duty_calls.png " alt="Källa: https://xkcd.com/386/">
-      </a>
-    </div>
-    <div class="row">
-      <p>Något är fel på nätet, det är dags att ta saken i egna händer och göra någonting åt detta.</p>
-      <p>Räddningen finns såklart genom sociala medier!</p>
-    </div>
-    <div class='row'>
-      <div class="column justify-center align-center">
-        <div class="w-100">
-          <h1>Din förmögenhet: <span id="money"></span> likes</h1>
-        </div>
-        <div class="w-100">
-          <h1>Likes per sekund: <span id="mps"></span></h1>
-        </div>
-        <div class="w-100">
-          <h1>Antal följare: <span id="followers"></span></h1>
-        </div>
-        <div class="w-100">
-          <h1>Följare</h1>
-          <div id="upgradelist"></div>
-        </div>
-      </div>
-      <div class="column justify-center align-center">
-        <div>
-          <button id="click">Tjäna</button>
-        </div>
-      </div>
-    </div>
-    <div class='row'>
-      <div id="msgbox"></div>
-    </div>
-  </main>
-  <footer>
-    <div class="container d-flex justify-between">
-      <p>Bild från <a href="https://xkcd.com">XKCD</a>.</p>
-      <p>Kod från <a href="https://github.com/jensnti">Jens</a>.</p>  
-    </div>
-  </footer>
-  <script src="javascripts/clicker.js"></script>
+
+<body>
+    <main class="container">
+        <header>
+            <div class="img-container">
+                <img src="img/brett-meliti-RgkYMfFopIA-unsplash-removebg-preview.png" alt="Fossil">
+            </div>
+            <h1>Fossiljägaren</h1>
+            <p>Med entusiasm och bara händer ger du dig ut i jakten på fossil till ditt museum.</p>
+            <p>Värva hjälpredor och gräv dig till nya upptäckter.</p>
+            <p>Hur många besökare kan du få?</p>
+        </header>
+        <section class="game">
+            <div class="game-hud">
+                <ul class="game-currency">
+                    <li class="item">
+                        <h1>Benbitar: <span id="money"></span></h1>
+                    </li>
+                    <li class="item">
+                        <h1>Soparskills: <span id="mps"></span></h1>
+                    </li>
+                    <li class="item">
+                        <h1>Besökare: <span id="mpc"></span></h1>
+                    </li>
+                </ul>
+                <div class="game-button">
+                    <button id="click">Sopa</button>
+                </div>
+            </div>
+            <div class="w-100">
+                <h1>Uppgraderingar</h1>
+                <div id="upgradelist"></div>
+            </div>
+            </div>
+        </section>
+    </main>
+    <div id="msgbox"></div>
+    <footer class="container">
+        <p>Hjälp till att fixa fel och lägga till funktioner, 
+            <a href="https://github.com/jensnti/clicker/issues">issues</a>
+            eller
+            <a href="https://github.com/jensnti/clicker/pulls">pull requests</a>.
+        </p>
+    </footer>
+    <script src="js/clicker.js"></script>
 </body>
 </html>
