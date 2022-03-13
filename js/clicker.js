@@ -156,7 +156,7 @@ function createCard(upgrade) {
             moneyPerClick++;
             money -= upgrade.cost;
             upgrade.cost *= 1.5;
-            cost.textContent = 'Köp för ' + upgrade.cost + ' likes';
+            cost.textContent = 'Köp för ' + upgrade.cost + ' benbitar';
             moneyPerSecond += upgrade.amount;
             message('Grattis du har lockat till dig fler besökare!', 'success');
         } else {
