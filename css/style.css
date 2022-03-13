@@ -78,19 +78,34 @@ select {
 
 /* end reset */
 
+/* Här nedan kommer de faktiska stilarna för sidan med kommentarer */
+
+/* 
+ * Bodyns storlek är satt i reset delen för att täcka hela webbläsarfönstret, se
+ * rad 23.
+ * Bodyn får display: flex för att möjligöra en sticky footer längst ned på sidan
+ * Genom att sätta en font på body elementet så används fonten på hela sidan.
+ */
 body {
     display: flex;
     flex-direction: column;
     background-color: #f8f8f8;
     color: #121212;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
+/* För att göra footern sticky så har vi flex på bodyn och då räcker det med 
+ * margin-top auto här.
+ */
 footer {
     margin-top: auto;
     padding-top: 2rem;
     padding-bottom: 3rem;
 }
 
+/* Alla strukturelement på sidan kommer att använda denna container för att skapa
+ * en centrerad layout.
+ * Layout styrs även här att fungera skapligt med olika devices.
+ */
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -113,7 +128,10 @@ footer {
         max-width: 54rem;
     }
 }
-
+/* Här finns ett par regler för att responsivt anpassa designen på sidan. 
+ * Vi gömmer headern på mobil för att spara plats och vänder på spelet så att 
+ * knappen blir överst på sidan.
+ */
 @media (max-width: 36rem) {
    header {
        display: none;
@@ -127,7 +145,7 @@ footer {
        justify-content: center;
    }
 }
-
+/* centrera bilden */
 .img-container {
     width: 100%;
     display: flex;
@@ -137,6 +155,7 @@ footer {
     margin-top: 2rem;
 }
 
+/* flex och space between ordnar layouten för speldata och knappen på desktop */
 .game-hud {
     display: flex;
     justify-content: space-between;
@@ -147,12 +166,17 @@ footer {
     padding: 0;
 }
 
+/* för spelelementet används #id som selektor för att skapa css reglerna */
 #click {
     width: 8rem;
     height: 8rem;
     font-size: 2rem;
 }
 
+/* #msgbox är elementet som visar sidans toasts, popupmeddelanden
+* fixed fungerar liknande absolute för att positionera element på ett fast ställe
+* vi använder måttet vmin som skalas efter webbläsarens storlek
+*/
 #msgbox {
     position: fixed;
     right: 2vmin;
@@ -165,6 +189,9 @@ footer {
     padding: 1rem;
 }
 
+/* de här klasserna används för att bestämma stilen på de olika storternas
+ * meddelanden. Javascript används för att lägga till stilen på meddelandet
+ */
 .warning {
     background-color: palevioletred;
 }
@@ -178,6 +205,10 @@ footer {
     background-color: rebeccapurple;
 }
 
+/* dessa kort används för spelets uppgraderingar 
+ * lägg märke till padding och margin för att ge elementen lite luft och 
+ * skapa en mer lättläst struktur
+ */
 .card {
     display: flex;
     justify-content: space-between;
@@ -190,7 +221,9 @@ footer {
 .card:hover {
     background-color: #dfdfdf;
 }
-
+/* klassen används på kortets titel, font-weight: 600 gör fonten fetare, en normal
+ * font vikt är oftast 400
+ */
 .title {
     font-weight: 600;
 }
