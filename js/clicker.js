@@ -11,6 +11,7 @@ const clickerButton = document.querySelector('#click');
 const moneyTracker = document.querySelector('#money');
 const mpsTracker = document.querySelector('#mps'); // money per second
 const mpcTracker = document.querySelector('#mpc'); // money per click
+const upgradesTracker = document.querySelector('#upgrades');
 const upgradeList = document.querySelector('#upgradelist');
 const msgbox = document.querySelector('#msgbox');
 
@@ -24,6 +25,7 @@ const msgbox = document.querySelector('#msgbox');
 let money = 0;
 let moneyPerClick = 1;
 let moneyPerSecond = 0;
+let acquiredUpgrades = 0;
 let last = 0;
 
 let achievementTest = false;
@@ -61,6 +63,7 @@ function step(timestamp) {
     moneyTracker.textContent = Math.round(money);
     mpsTracker.textContent = moneyPerSecond;
     mpcTracker.textContent = moneyPerClick;
+    upgradesTracker.textContent = acquiredUpgrades;
 
     if (timestamp >= last + 1000) {
         money += moneyPerSecond;
@@ -71,7 +74,7 @@ function step(timestamp) {
     // achievements. Titta dock på upgrades arrayen och gör något rimligare om du
     // vill ha achievements.
     // på samma sätt kan du även dölja uppgraderingar som inte kan köpas
-    if (moneyPerClick == 10 && !achievementTest) {
+    if (acquiredUpgrades == 10 && !achievementTest) {
         achievementTest = true;
         message('Du har hittat en FOSSIL!', 'achievement');
     }
@@ -112,6 +115,11 @@ upgrades = [
         amount: 1,
     },
     {
+        name: 'Gigantorsop',
+        cost: 50,
+        clicks: 2
+    },
+    {
         name: 'Spade',
         cost: 100,
         amount: 10,
@@ -147,17 +155,21 @@ function createCard(upgrade) {
     const header = document.createElement('p');
     header.classList.add('title');
     const cost = document.createElement('p');
-
-    header.textContent = `${upgrade.name}, +${upgrade.amount} per sekund.`;
+    if (upgrade.amount) {
+        header.textContent = `${upgrade.name}, +${upgrade.amount} per sekund.`;
+    } else {
+        header.textContent = `${upgrade.name}, +${upgrade.clicks} per klick.`;
+    }
     cost.textContent = `Köp för ${upgrade.cost} benbitar.`;
 
     card.addEventListener('click', (e) => {
         if (money >= upgrade.cost) {
-            moneyPerClick++;
+            acquiredUpgrades++;
             money -= upgrade.cost;
             upgrade.cost *= 1.5;
             cost.textContent = 'Köp för ' + upgrade.cost + ' benbitar';
-            moneyPerSecond += upgrade.amount;
+            moneyPerSecond += upgrade.amount ? upgrade.amount : 0;
+            moneyPerClick += upgrade.clicks ? upgrade.clicks : 0;
             message('Grattis du har lockat till dig fler besökare!', 'success');
         } else {
             message('Du har inte råd.', 'warning');
