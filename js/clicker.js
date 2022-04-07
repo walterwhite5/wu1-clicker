@@ -27,21 +27,34 @@ let moneyPerClick = 1;
 let moneyPerSecond = 0;
 let acquiredUpgrades = 0;
 let last = 0;
+let numberOfClicks = 0; // hur många gånger har spelare eg. klickat
+
+// likt upgrades skapas här en array med objekt som innehåller olika former 
+// av achievements.
+// requiredSOMETHING är vad som krävs för att få dem
 
 let achievements = [
     {
-        name: 'fossil',
-        description: 'Du har hittat en FOSSIL!',
-        value: 10,
-        acquired: false
+        description: 'Museet är redo att öppna, grattis! ',
+        requiredUpgrades: 1,
+        acquired: false,
     },
     {
-        name: 'arkeolog',
-        description: 'Du har hittat en mumifierad arkeolog!',
-        value: 20,
-        acquired: false
-    }
-]
+        description: 'Nu börjar det likna något, fortsätt klicka!',
+        requiredUpgrades: 10,
+        acquired: false,
+    },
+    {
+        description: 'Klickare, med licens att klicka!',
+        requiredClicks: 10,
+        acquired: false,
+    },
+    {
+        description: 'Tac-2 god!',
+        requiredClicks: 10000,
+        acquired: false,
+    },
+];
 
 /* Med ett valt element, som knappen i detta fall så kan vi skapa listeners
  * med addEventListener så kan vi lyssna på ett specifikt event på ett html-element
@@ -58,6 +71,7 @@ clickerButton.addEventListener(
     () => {
         // vid click öka score med 1
         money += moneyPerClick;
+        numberOfClicks += 1;
         // console.log(clicker.score);
     },
     false
@@ -83,17 +97,28 @@ function step(timestamp) {
         last = timestamp;
     }
 
-    // exempel på hur vi kan använda värden för att skapa tex 
-    // achievements. Titta dock på upgrades arrayen och gör något rimligare om du
-    // vill ha achievements.
-    // på samma sätt kan du även dölja uppgraderingar som inte kan köpas
-
-    achievements.forEach(achievement => {
-        if (acquiredUpgrades >= achievement.value && !achievement.acquired) {
+    // achievements, utgår från arrayen achievements med objekt
+    // koden nedan muterar (ändrar) arrayen och tar bort achievements 
+    // som spelaren klarat
+    // villkoren i första ifsatsen ser till att achivments som är klarade
+    // tas bort. Efter det så kontrolleras om spelaren har uppfyllt kriterierna
+    // för att få den achievement som berörs.
+    achievements = achievements.filter((achievement) => {
+        if (achievement.acquired) {
+            return false;
+        }
+        if (achievement.requiredUpgrades && acquiredUpgrades >= achievement.requiredUpgrades) {
             achievement.acquired = true;
             message(achievement.description, 'achievement');
+            return false;
+        } else if (achievement.requiredClicks && numberOfClicks >= achievement.requiredClicks) {
+            achievement.acquired = true;
+            message(achievement.description, 'achievement');
+            return false;
         }
+        return true;
     });
+
     window.requestAnimationFrame(step);
 }
 
@@ -132,7 +157,7 @@ upgrades = [
     {
         name: 'Gigantorsop',
         cost: 50,
-        clicks: 2
+        clicks: 2,
     },
     {
         name: 'Spade',
