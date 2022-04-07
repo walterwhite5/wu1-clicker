@@ -28,7 +28,20 @@ let moneyPerSecond = 0;
 let acquiredUpgrades = 0;
 let last = 0;
 
-let achievementTest = false;
+let achievements = [
+    {
+        name: 'fossil',
+        description: 'Du har hittat en FOSSIL!',
+        value: 10,
+        acquired: false
+    },
+    {
+        name: 'arkeolog',
+        description: 'Du har hittat en mumifierad arkeolog!',
+        value: 20,
+        acquired: false
+    }
+]
 
 /* Med ett valt element, som knappen i detta fall så kan vi skapa listeners
  * med addEventListener så kan vi lyssna på ett specifikt event på ett html-element
@@ -74,11 +87,13 @@ function step(timestamp) {
     // achievements. Titta dock på upgrades arrayen och gör något rimligare om du
     // vill ha achievements.
     // på samma sätt kan du även dölja uppgraderingar som inte kan köpas
-    if (acquiredUpgrades == 10 && !achievementTest) {
-        achievementTest = true;
-        message('Du har hittat en FOSSIL!', 'achievement');
-    }
 
+    achievements.forEach(achievement => {
+        if (acquiredUpgrades >= achievement.value && !achievement.acquired) {
+            achievement.acquired = true;
+            message(achievement.description, 'achievement');
+        }
+    });
     window.requestAnimationFrame(step);
 }
 
