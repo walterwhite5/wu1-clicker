@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Clicker exempel</title>
 </head>
 
 <body>
+    <audio id="swoosh" src="audio/607251__d4xx__swoosh-2.wav"></audio>
     <main class="container">
         <header>
             <div class="img-container">
@@ -29,14 +31,14 @@
                         <h3>Benbitar per sop: <span id="mpc"></span></h3>
                     </li>
                     <li class="item">
-                        <h3>Soparskills: <span id="mps"></span></h3>
+                        <h3>Benbitar per sekund: <span id="mps"></span></h3>
                     </li>
                     <li class="item">
-                        <h3>Besökare: <span id="upgrades"></span></h3>
+                        <h3>Uppgraderingar: <span id="upgrades"></span></h3>
                     </li>
                 </ul>
-                <div class="game-button">
-                    <button id="click">Sopa</button>
+                <div class="game-controls">
+                    <button id="game-button">Sopa</button>
                 </div>
             </div>
             <div class="w-100">
@@ -52,6 +54,7 @@
             eller
             <a href="https://github.com/jensnti/clicker/pulls">pull requests</a>.
         </p>
+        <p>Credits: <a href="https://freesound.org/s/607251/">ljud</a>, <a href="https://unsplash.com/photos/RgkYMfFopIA">bild</a>.</p>
     </footer>
     <script src="js/clicker.js"></script>
 </body>

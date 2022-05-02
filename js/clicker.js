@@ -7,13 +7,14 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
  * Viktigt: queryselector ger oss ett html element eller flera om det finns.
  */
-const clickerButton = document.querySelector('#click');
+const clickerButton = document.querySelector('#game-button');
 const moneyTracker = document.querySelector('#money');
 const mpsTracker = document.querySelector('#mps'); // money per second
 const mpcTracker = document.querySelector('#mpc'); // money per click
 const upgradesTracker = document.querySelector('#upgrades');
 const upgradeList = document.querySelector('#upgradelist');
 const msgbox = document.querySelector('#msgbox');
+const audioAchievement = document.querySelector('#swoosh');
 
 /* Följande variabler använder vi för att hålla reda på hur mycket pengar som
  * spelaren, har och tjänar.
@@ -210,7 +211,7 @@ function createCard(upgrade) {
             cost.textContent = 'Köp för ' + upgrade.cost + ' benbitar';
             moneyPerSecond += upgrade.amount ? upgrade.amount : 0;
             moneyPerClick += upgrade.clicks ? upgrade.clicks : 0;
-            message('Grattis du har lockat till dig fler besökare!', 'success');
+            message('Grattis du har köpt en uppgradering!', 'success');
         } else {
             message('Du har inte råd.', 'warning');
         }
@@ -233,6 +234,9 @@ function message(text, type) {
     p.classList.add(type);
     p.textContent = text;
     msgbox.appendChild(p);
+    if (type === 'achievement') {
+        audioAchievement.play();
+    }
     setTimeout(() => {
         p.parentNode.removeChild(p);
     }, 2000);
