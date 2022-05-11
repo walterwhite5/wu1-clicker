@@ -7,10 +7,10 @@ En clicker, eller mer specifikt en cookie-clicker är ett spel, läs mer [här](
 
 ## Uppgift
 
-Vi ska jobba med att designa och skapa clickerspelet. Den grundläggande javascriptskoden, samt viss html finns i detta repo. Målet är inte att koda ett spel, men du är välkommen att ändra i koden för att passa ditt tema och upplägg.
+Du ska designa och skapa ett clickerspel. Den grundläggande javascriptskoden, samt viss html finns i detta repo. Målet är inte att koda själva spelfnktionerna, men du är välkommen att ändra i koden för att passa ditt tema och upplägg.
 
-Fokuset för uppgiften är att prova på lite javascript. Du behöver även komma på en egen klicker-ide eller bygga vidare på den som finns för att 
-ha ett material att arbeta med. 
+Fokuset är att prova på javascript.
+Du ska även utveckla din egen klicker-ide (design) eller bygga vidare på den som finns för att ha ett material att arbeta med. 
 Så börja med att planera ditt tema, skapa en logga, designa en knapp.
 
 * Färger
@@ -28,6 +28,6 @@ Vi kommer att skriva post mortem när vi är klara, pm.md.
 
 ## Tid
 
-Vi har några veckor nu mellan sportlovet(10) och påsklovet(16).
+Se classroom.
 
 Tack [Malte](https://github.com/Mafrans) för lite ideér.
