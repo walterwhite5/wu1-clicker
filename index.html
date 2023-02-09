@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +12,33 @@
 
 <body>
     <audio id="swoosh" src="audio/607251__d4xx__swoosh-2.wav"></audio>
-    <main class="container">
-        <header>
-            <div class="img-container">
-                <img src="img/brett-meliti-RgkYMfFopIA-unsplash-removebg-preview.png" alt="Fossil">
-            </div>
+    <header class="hero">
+        <picture>
+            <source srcset="img/ashleigh-joy-photography-uyRku9KF2N8-unsplash-resize-s.jpg">
+            <source srcset="img/ashleigh-joy-photography-uyRku9KF2N8-unsplash-resize.jpg">
+            <source srcset="img/ashleigh-joy-photography-uyRku9KF2N8-unsplash-resize.webp">
+            <source srcset="img/ashleigh-joy-photography-uyRku9KF2N8-unsplash-resize-s.webp">
+            <img src="img/ashleigh-joy-photography-uyRku9KF2N8-unsplash-resize.jpg" alt="">
+        </picture>
+        <div class="hero-gradient"></div>
+        <div class="container hero-content">
             <h1>Fossiljägaren</h1>
-            <p>Med entusiasm och bara händer ger du dig ut i jakten på fossil till ditt museum.</p>
-            <p>Värva hjälpredor och gräv dig till nya upptäckter.</p>
-            <p>Hur många besökare kan du få?</p>
-        </header>
-        <section class="game">
+            <div class="lead">
+                <p>Med entusiasm och bara händer ger du dig ut i jakten på fossil till ditt museum.</p>
+                <p>Värva hjälpredor och gräv dig till nya upptäckter.</p>
+                <p>Hur många besökare kan du få?</p>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <article class="game">
             <div class="game-hud">
                 <ul class="game-currency">
                     <li class="item">
                         <h3>Benbitar: <span id="money"></span></h3>
                     </li>
                     <li class="item">
-                        <h3>Benbitar per sop: <span id="mpc"></span></h3>
+                        <h3>Benbitar per klick: <span id="mpc"></span></h3>
                     </li>
                     <li class="item">
                         <h3>Benbitar per sekund: <span id="mps"></span></h3>
@@ -38,24 +48,50 @@
                     </li>
                 </ul>
                 <div class="game-controls">
-                    <button id="game-button">Sopa</button>
+                    <button id="game-button">Gräv</button>
                 </div>
             </div>
             <div class="w-100">
                 <h2>Uppgraderingar</h2>
                 <div id="upgradelist"></div>
             </div>
-        </section>
+        </article>
     </main>
     <div id="msgbox"></div>
-    <footer class="container">
-        <p>Hjälp till att fixa fel och lägga till funktioner, 
-            <a href="https://github.com/jensnti/clicker/issues">issues</a>
-            eller
-            <a href="https://github.com/jensnti/clicker/pulls">pull requests</a>.
-        </p>
-        <p>Credits: <a href="https://freesound.org/s/607251/">ljud</a>, <a href="https://unsplash.com/photos/RgkYMfFopIA">bild</a>.</p>
+    <footer class="container footer">
+        <div>
+            <p>Hjälp till att fixa fel och lägga till funktioner:</p>
+            <ul>
+                <li>
+                    <a href="https://github.com/jensnti/clicker/issues">issues</a>
+                </li>
+                <li>
+                    <a href="https://github.com/jensnti/clicker/pulls">pull requests</a>.
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>Credits:</p>
+            <ul>
+                <li>
+                    <a href="https://freesound.org/s/607251/">Ljudeffekt</a>
+                </li>
+                <li>
+                    Photo by <a
+                        href="https://unsplash.com/@ashleighjoyphotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ashleigh
+                        Joy Photography</a> on <a
+                        href="https://unsplash.com/photos/uyRku9KF2N8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                </li>
+                <li>
+                    Photo by <a
+                        href="https://unsplash.com/es/@bmeliti?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Brett
+                        Meliti</a> on <a
+                        href="https://unsplash.com/photos/RgkYMfFopIA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                </li>
+            </ul>
+        </div>
     </footer>
     <script src="js/clicker.js"></script>
 </body>
+
 </html>
