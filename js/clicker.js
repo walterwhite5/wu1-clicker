@@ -29,8 +29,9 @@ let moneyPerSecond = 0;
 let acquiredUpgrades = 0;
 let last = 0;
 let numberOfClicks = 0; // hur många gånger har spelare eg. klickat
+let active = false; // exempel för att visa att du kan lägga till klass för att indikera att spelare får valuta
 
-// likt upgrades skapas här en array med objekt som innehåller olika former 
+// likt upgrades skapas här en array med objekt som innehåller olika former
 // av achievements.
 // requiredSOMETHING är vad som krävs för att få dem
 
@@ -41,7 +42,7 @@ let achievements = [
         acquired: false,
     },
     {
-        description: 'Nu börjar det likna något, fortsätt klicka!',
+        description: 'Nu börjar det likna något, fortsätt gräva!',
         requiredUpgrades: 10,
         acquired: false,
     },
@@ -70,8 +71,9 @@ let achievements = [
 clickerButton.addEventListener(
     'click',
     () => {
-        // vid click öka score med 1
+        // vid click öka score med moneyPerClick
         money += moneyPerClick;
+        // håll koll på hur många gånger spelaren klickat
         numberOfClicks += 1;
         // console.log(clicker.score);
     },
@@ -98,8 +100,13 @@ function step(timestamp) {
         last = timestamp;
     }
 
+    if (moneyPerSecond > 0 && !active) {
+        mpsTracker.classList.add('active');
+        active = true;
+    }
+
     // achievements, utgår från arrayen achievements med objekt
-    // koden nedan muterar (ändrar) arrayen och tar bort achievements 
+    // koden nedan muterar (ändrar) arrayen och tar bort achievements
     // som spelaren klarat
     // villkoren i första ifsatsen ser till att achivments som är klarade
     // tas bort. Efter det så kontrolleras om spelaren har uppfyllt kriterierna
@@ -108,11 +115,17 @@ function step(timestamp) {
         if (achievement.acquired) {
             return false;
         }
-        if (achievement.requiredUpgrades && acquiredUpgrades >= achievement.requiredUpgrades) {
+        if (
+            achievement.requiredUpgrades &&
+            acquiredUpgrades >= achievement.requiredUpgrades
+        ) {
             achievement.acquired = true;
             message(achievement.description, 'achievement');
             return false;
-        } else if (achievement.requiredClicks && numberOfClicks >= achievement.requiredClicks) {
+        } else if (
+            achievement.requiredClicks &&
+            numberOfClicks >= achievement.requiredClicks
+        ) {
             achievement.acquired = true;
             message(achievement.description, 'achievement');
             return false;
@@ -135,7 +148,6 @@ function step(timestamp) {
  * Efter det så kallas requestAnimationFrame och spelet är igång.
  */
 window.addEventListener('load', (event) => {
-    console.log('page is fully loaded');
     upgrades.forEach((upgrade) => {
         upgradeList.appendChild(createCard(upgrade));
     });
@@ -151,22 +163,22 @@ window.addEventListener('load', (event) => {
  */
 upgrades = [
     {
-        name: 'Fin sop',
+        name: 'Sop',
         cost: 10,
         amount: 1,
     },
     {
-        name: 'Gigantorsop',
+        name: 'Kvalitetsspade',
         cost: 50,
         clicks: 2,
     },
     {
-        name: 'Spade',
+        name: 'Skottkärra',
         cost: 100,
         amount: 10,
     },
     {
-        name: 'Hjälpreda',
+        name: 'Grävmaskin',
         cost: 1000,
         amount: 100,
     },

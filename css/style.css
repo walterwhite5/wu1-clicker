@@ -1,25 +1,39 @@
-/* Här nedan kommer de faktiska stilarna för sidan med kommentarer */
+/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+/* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1240,20,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
-/* 
- * Bodyns storlek är satt i reset delen för att täcka hela webbläsarfönstret, se
- * rad 23.
- * Bodyn får display: flex för att möjligöra en sticky footer längst ned på sidan
- * Genom att sätta en font på body elementet så används fonten på hela sidan.
- */
-body {
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f8f8;
-    color: #121212;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+:root {
+    --color-lighter: hsl(80, 10%, 90%);
+    --color-light: hsl(80, 10%, 80%);
+    --color-dark: hsl(360, 10%, 10%);
+    --color-dark-transparent: hsla(360, 10%, 10%, 0.2);
+
+    --step--1: clamp(0.94rem, calc(0.94rem + 0vw), 0.94rem);
+    --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+    --step-1: clamp(1.35rem, calc(1.24rem + 0.55vw), 1.67rem);
+    --step-2: clamp(1.62rem, calc(1.41rem + 1.05vw), 2.22rem);
+
+    --space-xs-s: clamp(0.88rem, calc(0.74rem + 0.65vw), 1.25rem);
+    --space-s-m: clamp(1.13rem, calc(0.86rem + 1.3vw), 1.88rem);
+    --space-m-l: clamp(1.69rem, calc(1.4rem + 1.41vw), 2.5rem);
+    --space-l-xl: clamp(2.25rem, calc(1.73rem + 2.61vw), 3.75rem);
+
+    --space-2xl-3xl: clamp(4.5rem, calc(3.46rem + 5.22vw), 7.5rem);
+
+    --space-4xl-5xl: clamp(7.88rem, calc(7.14rem + 3.7vw), 10rem);
 }
-/* För att göra footern sticky så har vi flex på bodyn och då räcker det med 
- * margin-top auto här.
- */
-footer {
-    margin-top: auto;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+
+body {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-family: sans-serif;
+    font-size: var(--step-0);
+}
+
+h1 {
+    font-size: var(--step-2);
+    text-transform: uppercase;
+    font-weight: 700;
+    max-width: 20ch;
 }
 
 /* göm audio, används för att preloada ljudet */
@@ -27,63 +41,72 @@ audio {
     display: none;
 }
 
-/* Alla strukturelement på sidan kommer att använda denna container för att skapa
- * en centrerad layout.
- * Layout styrs även här att fungera skapligt med olika devices.
- */
 .container {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100%;
-}
-@media (min-width: 36rem) {
-    .container {
-        max-width: 34rem;
-    }
-}
-@media (min-width: 48rem) {
-    .container {
-        max-width: 44rem;
-    }
-}
-@media (min-width: 62rem) {
-    .container {
-        max-width: 54rem;
-    }
-}
-/* Här finns ett par regler för att responsivt anpassa designen på sidan. 
- * Vi gömmer headern på mobil för att spara plats och vänder på spelet så att 
- * knappen blir överst på sidan.
- */
-@media (max-width: 36rem) {
-   header {
-       display: none;
-   }
-   .game-hud {
-        flex-direction: column-reverse;
-   }
-   .game-controls {
-       width: 100%;
-       display: flex;
-       justify-content: center;
-   }
-}
-/* centrera bilden */
-.img-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    width: min(80ch, 100vw - 4.8rem);
+    margin-inline: auto;
 }
 
-.img-container > img {
-    height: auto;
-    max-height: 30vh;
+.footer {
+    --min: 30ch;
+
+    margin-top: auto;
+    padding: var(--space-l-xl) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+    gap: var(--space-s-m);
+}
+.footer > * {
+    font-size: var(--step--1);
+}
+.hero {
+    display: grid;
+    grid-template-areas: 'stack';
+}
+
+.hero-gradient {
+    grid-area: stack;
+    place-self: end;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        0deg,
+        var(--color-dark),
+        var(--color-dark-transparent)
+    );
+}
+
+.hero > picture {
+    place-self: center;
+    grid-area: stack;
+    width: 100%;
+    height: 100%;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.hero-content {
+    grid-area: stack;
+    place-self: end;
+    padding: var(--space-m-l) 0;
+    color: var(--color-light);
+}
+
+@media (max-width: 30rem) {
+    .lead {
+        display: none;
+    }
+    .hero > picture {
+        max-height: 15vh;
+    }
 }
 
 .game {
-    margin-top: 2rem;
+    margin-top: var(--space-m-l);
 }
 
 /* flex och space between ordnar layouten för speldata och knappen på desktop */
@@ -97,11 +120,44 @@ audio {
     padding: 0;
 }
 
+/* game-currency är en lista med list items */
+.item > h3 {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-xs-s);
+}
+
+@media (max-width: 30rem) {
+    .game-hud {
+        flex-direction: column-reverse;
+    }
+    .game-controls {
+        place-self: center;
+    }
+}
+
 /* för spelelementet används #id som selektor för att skapa css reglerna */
 #game-button {
-    width: 8rem;
-    height: 8rem;
-    font-size: 2rem;
+    width: var(--space-4xl-5xl);
+    height: var(--space-4xl-5xl);
+    font-size: var(--step-2);
+    background: url('../img/brett-meliti-RgkYMfFopIA-unsplash-removebg-preview.png');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    color: var(--color-light);
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#game-button:hover {
+    border-color: var(--color-dark-transparent);
+}
+
+#game-button:active {
+    border-color: var(--color-dark);
+    background-color: var(--color-dark-transparent);
 }
 
 /* #msgbox är elementet som visar sidans toasts, popupmeddelanden
@@ -116,8 +172,8 @@ audio {
 }
 
 #msgbox > p {
-    margin-bottom: 0.2rem;
-    padding: 1rem;
+    margin-bottom: var(--space-xs-s);
+    padding: var(--space-xs-s);
 }
 
 /* de här klasserna används för att bestämma stilen på de olika storternas
@@ -132,7 +188,7 @@ audio {
 }
 
 .achievement {
-    color: #121212;
+    color: var(--color-light);
     background-color: rebeccapurple;
 }
 
@@ -144,17 +200,39 @@ audio {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    border: 1px solid #646464;
-    margin: 0.5rem 0;
-    padding: 1rem 0.5rem;
+    border: 1px solid var(--color-dark-transparent);
+    margin: var(--space-xs-s) 0;
+    padding: var(--space-s-m) var(--space-xs-s);
 }
 
 .card:hover {
-    background-color: #dfdfdf;
+    background-color: var(--color-lighter);
+}
+
+.card p:not(.title) {
+    text-align: end;
 }
 /* klassen används på kortets titel, font-weight: 600 gör fonten fetare, en normal
  * font vikt är oftast 400
  */
 .title {
     font-weight: 600;
+}
+
+/* animation och klass för att blinka texten */
+
+@keyframes flash {
+    0% {
+        color: var(--color-dark);
+    }
+    50% {
+        color: var(--color-dark-transparent);
+    }
+    100% {
+        color: var(--color-dark);
+    }
+}
+
+.active {
+    animation: flash 1s infinite;
 }
