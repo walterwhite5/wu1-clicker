@@ -40,7 +40,14 @@ Skriv kort ned vad du arbetar med i anteckningar.md
 
 Vi kommer att skriva post mortem när vi är klara, pm.md.
 
-## Tid
+## Kravspec
+
+* Fungerande Clicker med eget tema och design **utifrån planering**.
+* Använder javascript.
+* Inga fel, validerande html / css.
+* Hosting på GitHub pages.
+
+## Tid och övrigt
 
 Se classroom.
 
