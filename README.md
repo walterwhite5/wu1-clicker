@@ -28,6 +28,10 @@ Skissa med Figma om du vill. Men du ska skriva ned och anteckna.
 * Typsnitt
 * Layout
 
+## Material
+
+Forka detta repo och arbeta i det.
+
 ## Dokumentering
 
 Spara ditt planerings / skiss-material i en mapp i detta repo (dokumentation).
