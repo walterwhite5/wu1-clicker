@@ -11,7 +11,7 @@ Först så skissade jag idéer om hur klickern skulle se ut (en bild på skissen
 Här är vad jag gjorde varje vecka, enligt min logg:
 Den 30:e september så skissade jag idéer samt planerade vad det skulle innehålla. Den 7:e oktober så planerade jag klart det grundläggande innehållet och påbörjade idéer om design. Den 14:e så designade jag en logga (fastän den aldrig användes), planerade klart utseendet och började med att anpassa koden som Jens gav ut för min egen idé. Den 21:a så blev klickern klar.
 
-![GitHub Logo](/Bilder/Skärmbilder/Skiss18.png)
+![GitHub Logo](Skiss18.png)
 
 Positiva erfarenheter
 Det som gick bra var att skriva om koden. Jag har några erfarenheter inom HTML från kursen från förra terminen. Jag kan upprepa det genom att lyssna på framtida lektioner och be om hjälp om jag fastnar.
